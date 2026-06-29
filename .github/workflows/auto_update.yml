@@ -2,7 +2,7 @@ name: Auto Update Valorant Version
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # 每 6 小时自动运行
+    - cron: '0 */1 * * *' # 每 6 小时自动运行
   workflow_dispatch: # 允许手动点击运行
 
 jobs:
