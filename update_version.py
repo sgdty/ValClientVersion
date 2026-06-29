@@ -3,7 +3,7 @@ import os
 import urllib.request
 
 # API 地址
-API_URL = "https://v1.valorant-api.com/v1/version/ap"
+API_URL = "https://api.henrikdev.xyz/valorant/v1/version/ap"
 TARGET_FILE = "data.json"
 
 
