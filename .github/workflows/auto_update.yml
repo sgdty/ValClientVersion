@@ -1,0 +1,32 @@
+name: Auto Update Valorant Version
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # 每 6 小时自动运行
+  workflow_dispatch: # 允许手动点击运行
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    # 运行你的 Python 脚本（在此处安全地注入 Secret Key）
+    - name: Run script
+      env:
+        HENRIK_API_KEY: ${{ secrets.VALORANT_API_KEY }} # 将 GitHub 保险箱里的值绑定到环境变量
+      run: python update_version.py
+
+    - name: Commit and Push changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add data.json
+        git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto update data.json" && git push)
