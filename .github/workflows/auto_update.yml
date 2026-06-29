@@ -21,7 +21,7 @@ jobs:
     # 运行你的 Python 脚本（在此处安全地注入 Secret Key）
     - name: Run script
       env:
-        HENRIK_API_KEY: ${{ secrets.VALORANT_API_KEY }} # 将 GitHub 保险箱里的值绑定到环境变量
+        HENRIK_API_KEY: ${{ secrets.HENRIK_API_KEY }} # 将 GitHub 保险箱里的值绑定到环境变量
       run: python update_version.py
 
     - name: Commit and Push changes
