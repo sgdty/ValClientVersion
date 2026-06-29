@@ -27,13 +27,15 @@ def fetch_and_update():
             if response.status == 200:
                 raw_data = json.loads(response.read().decode())
 
-                # 提取内层 data 字典
+                # 安全地获取内层 data 字典
                 inner_data = raw_data.get("data", {})
 
-                # 仅保留你需要的两个字段
+                # --- 优化后的映射逻辑 ---
+                # 将 API 的 build_ver 映射为文件里的 version
+                # 将 API 的 version_for_api 映射为文件里的 riotClientVersion
                 filtered_data = {
-                    "build_ver": inner_data.get("version"),
-                    "version_for_api": inner_data.get("clientVersion"),
+                    "version": inner_data.get("build_ver"),
+                    "riotClientVersion": inner_data.get("version_for_api"),
                 }
 
                 with open(TARGET_FILE, "w", encoding="utf-8") as f:
