@@ -32,8 +32,8 @@ def fetch_and_update():
 
                 # 仅保留你需要的两个字段
                 filtered_data = {
-                    "version": inner_data.get("version"),
-                    "clientVersion": inner_data.get("clientVersion"),
+                    "build_ver": inner_data.get("version"),
+                    "version_for_api": inner_data.get("clientVersion"),
                 }
 
                 with open(TARGET_FILE, "w", encoding="utf-8") as f:
