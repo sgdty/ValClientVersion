@@ -24,9 +24,8 @@ jobs:
         HENRIK_API_KEY: ${{ secrets.HENRIK_API_KEY }} # 将 GitHub 保险箱里的值绑定到环境变量
       run: python update_version.py
 
-
-      - name: Check if data.json changed and Notify Discord
-        env:
+    - name: Check if data.json changed and Notify Discord
+      env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           # 1. 使用 git status 检查 data.json 是否有被修改过
