@@ -23,43 +23,6 @@ jobs:
       env:
         HENRIK_API_KEY: ${{ secrets.HENRIK_API_KEY }} # 将 GitHub 保险箱里的值绑定到环境变量
       run: python update_version.py
-
-    - name: Check if data.json changed and Notify Discord
-      env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          # 1. 使用 git status 检查 data.json 是否有被修改过
-          if git diff --quiet data.json; then
-            echo "📢 检测到 data.json 内容未发生任何改变，跳过通知。"
-            exit 0
-          fi
-
-          # 2. 如果走到这里，说明文件确实变了，开始读取新版本号
-          VERSION=$(node -p "require('./data.json').version")
-          echo "检测到新版本号: $VERSION，准备发送 Discord 通知..."
-
-          # 3. 顺便自动把这个修改 commit 并 push 到仓库（如果你的脚本之前没有处理这一步）
-          # git config --global user.name "github-actions[bot]"
-          # git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          # git add data.json
-          # git commit -m "🤖 自动更新版本号至 $VERSION"
-          # git push
-
-          # 4. 发送 Discord 卡片消息
-          curl -H "Content-Type: application/json" \
-               -X POST \
-               -d '{
-                 "embeds": [{
-                   "title": "🚀 瓦罗兰特客户端版本已自动更新！",
-                   "color": 15158332, 
-                   "fields": [
-                     {"name": "最新版本号", "value": "`'$VERSION'`", "inline": true}
-                   ],
-                   "footer": {"text": "触发源: 自动API版本监控"}
-                 }]
-               }' $DISCORD_WEBHOOK
-
-
       
     - name: Commit and Push changes
       run: |
