@@ -36,7 +36,7 @@ jobs:
         fi
 
         # 2. 如果走到这里，说明文件确实变了，开始读取新版本号
-        VERSION=$(node -p "require('./data.json').version")
+        VERSION=$(node -p "require('./data.json').riotClientVersion")
         echo "检测到新版本号: $VERSION，准备发送 Discord 通知..."
 
         # 3. 顺便自动把这个修改 commit 并 push 到仓库（如果你的脚本之前没有处理这一步）
