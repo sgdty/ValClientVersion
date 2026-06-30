@@ -42,7 +42,7 @@ jobs:
                -X POST \
                -d '{
                  "embeds": [{
-                   "title": "🚀 瓦罗兰特客户端版本已自动更新！",
+                   "title": "🚀 Valorant客户端版本已自动更新！",
                    "color": 15158332, 
                    "fields": [
                      {"name": "最新版本号", "value": "`'$VERSION'`", "inline": true}
