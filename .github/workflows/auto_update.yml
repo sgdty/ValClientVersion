@@ -54,7 +54,12 @@ jobs:
                  "title": "🚀 瓦罗兰特客户端版本已自动更新！",
                  "color": 15158332, 
                  "fields": [
-                   {"name": "最新版本号", "value": "`'$VERSION'`", "inline": true}
+                   {"name": "最新版本号", "value": "`'$VERSION'`", "inline": true},
+                   {
+                       "name": "更新文件",
+                       "value": "[data.json](https://github.com/${{ github.repository }}/blob/main/data.json)",
+                       "inline": true
+                     }
                  ],
                  "footer": {"text": "触发源: 自动API版本监控"}
                }]
