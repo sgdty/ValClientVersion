@@ -36,7 +36,7 @@ def fetch_and_update():
                 filtered_data = {"version": inner_data.get("build_ver"),"riotClientVersion": inner_data.get("version_for_api"),}
 
                 with open(TARGET_FILE, "w", encoding="utf-8") as f:
-                    json.dump(filtered_data, f, ensure_ascii=False, indent=4)
+                    json.dump(filtered_data, f, ensure_ascii=False)
                 print("已成功携带 Key 请求并更新精简数据！")
             else:
                 print(f"请求失败，状态码: {response.status}")
