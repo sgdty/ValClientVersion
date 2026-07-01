@@ -33,10 +33,7 @@ def fetch_and_update():
                 # --- 优化后的映射逻辑 ---
                 # 将 API 的 build_ver 映射为文件里的 version
                 # 将 API 的 version_for_api 映射为文件里的 riotClientVersion
-                filtered_data = {
-                    "version": inner_data.get("build_ver"),
-                    "riotClientVersion": inner_data.get("version_for_api"),
-                }
+                filtered_data = {"version": inner_data.get("build_ver"),"riotClientVersion": inner_data.get("version_for_api"),}
 
                 with open(TARGET_FILE, "w", encoding="utf-8") as f:
                     json.dump(filtered_data, f, ensure_ascii=False, indent=4)
